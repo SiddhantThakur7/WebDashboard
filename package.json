@@ -1,0 +1,24 @@
+{
+  "name": "webdashboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SiddhantThakur7/WebDashboard.git"
+  },
+  "author": "Siddhant Thakur and Shaurya Gupta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SiddhantThakur7/WebDashboard/issues"
+  },
+  "homepage": "https://github.com/SiddhantThakur7/WebDashboard#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1"
+  }
+}
