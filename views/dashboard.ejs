@@ -6,18 +6,13 @@
     <link rel="icon" type="image/png" href="/assets/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Dashboard by Shaurya</title>
+    <title>IoT Dashboard</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
     <link rel="stylesheet" type="text/css" href="https://rawgit.com/gionkunz/chartist-js/master/dist/chartist.min.css">
-    <style>
-        #chart {
-            height: 300px;
-            width: 100%;
-        }
-    </style>
+   
     <!-- Bootstrap core CSS     -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -36,26 +31,30 @@
     <input type="hidden" name="tempData" id="tempData" value=<%= temp %>>
     <input type="hidden" name="bpmData" id="bpmData" value=<%=bpm %>>
     <input type="hidden" name="timeData" id="timeData" value=<%=times %>>
+    <input type="hidden" name="eData" id="eData" value=<%= e %>>
+
+
     <!-- <div id="timeData"> <%= times %> </div>
     <div id="tempData"> <%= temp %> </div>
     <div id="bpmData"><%= bpm %> </div> -->
 
 
+    <!-- ------------------------------------ Sidebar --------------------------------------- -->
     <div class="wrapper">
         <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-5.jpg">
 
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="http://www.creative-tim.com" class="simple-text">
-                        HW/SW Dashboard
+                    <a href="/" class="simple-text">
+                        IoT Dashboard
                     </a>
                 </div>
 
                 <ul class="nav">
                     <li class="active">
-                        <a href="dashboard.html">
+                        <a href="/">
                             <i class="pe-7s-graph"></i>
-                            <p>Dashboard</p>
+                            <p>Sync Data</p>
                         </a>
                     </li>
                 </ul>
@@ -63,13 +62,14 @@
         </div>
 
         <div class="main-panel">
+    <!-- ------------------------------------ Navbar --------------------------------------- -->
             <nav class="navbar navbar-default navbar-fixed">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse"
                             data-target="#navigation-example-2">
                         </button>
-                        <a class="navbar-brand" href="#">IoTDashboard</a>
+                        <a class="navbar-brand" href="#">IoT Dashboard</a>
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-left">
@@ -93,18 +93,18 @@
                 </div>
             </nav>
 
-
+<!-- ------------------------------------ Main Content --------------------------------------- -->
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
+                        <!-- ------------------------------------ Heart Rate Chart Section --------------------------------------- -->
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="header">
                                     <h4 class="title">Heart rate sensor</h4>
-                                    <p class="category">Heart rate in the last 60 minutes</p>
+                                    <p class="category">Heart rate in <strong>Beats Per Minute</strong></p>
                                 </div>
                                 <div class="content">
-
 
                                     <div id="heart-sensor" class="ct-chart ct-perfect-fourth"></div>
 
@@ -114,28 +114,25 @@
                                         </div>
                                         <hr>
                                         <div class="stats">
-                                            <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
+                                            <i class="fa fa-clock-o"></i> Updated at <%= date %> 
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
+                       <!-- ------------------------------------ Temperature Chart Section --------------------------------------- -->
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="header">
                                     <h4 class="title">Temperature</h4>
-                                    <p class="category">24 Hours performance</p>
+                                    <p class="category">Temperature in <strong>Degree Faranheit</strong></p>
                                 </div>
                                 <div class="content">
                                     <style>
                                         #temp-sensor {
                                             height: 300px;
                                             width: 100%;
-                                        }
-
-                                        .ct-chart-a {
-                                            color-adjust: red;
                                         }
 
                                         .ct-chart-a .ct-series .ct-line,
@@ -147,11 +144,11 @@
 
                                     <div class="footer">
                                         <div class="legend">
-                                            <i class="fa fa-circle text-danger"></i> Faranheit
+                                            <i class="fa fa-circle text-danger"></i> Temperature
                                         </div>
                                         <hr>
                                         <div class="stats">
-                                            <i class="fa fa-history"></i> Updated 3 minutes ago
+                                            <i class="fa fa-history"></i> Updated at <%= date %> 
                                         </div>
                                     </div>
                                 </div>
@@ -159,13 +156,14 @@
                         </div>
                     </div>
 
-
+<!-- ------------------------------------ Summarisation Section --------------------------------------- -->
                     <div class="row">
+                        <!-- ------------------------------------ Mixed Chart Section --------------------------------------- -->
                         <div class="col-md-6">
                             <div class="card ">
                                 <div class="header">
-                                    <h4 class="title">Temperature and Heart rate over the months</h4>
-                                    <p class="category">Temperature noted every hour</p>
+                                    <h4 class="title">Temperature and Heart Rate Cumulative Plot</h4>
+                                    <p class="category">Comparitive Analysis of Temperature and Heart Rate</p>
                                 </div>
                                 <div class="content">
                                     <div id="mixed" class="ct-chart ct-perfect-fourth"></div>
@@ -178,7 +176,7 @@
                                         </div>
                                         <hr>
                                         <div class="stats">
-                                            <i class="fa fa-check"></i> Data information certified
+                                            <i class="fa fa-check"></i> Data sync instance on <%= date %>  
                                         </div>
                                     </div>
                                 </div>
@@ -190,16 +188,15 @@
                         <div class="col-md-6">
                             <div class="card ">
                                 <div class="header">
-                                    <h4 class="title">Tasks</h4>
-                                    <p class="category">How to use the health monitoring system </p>
+                                    <h4 class="title">Data Summary</h4>
+                                    <p class="category"> Tabulated data summary in sequence of occurance. </p>
                                 </div>
                                 <div class="content">
-
                                     <div class="card card-plain">
-                                        <div class="header">
+                                        <!-- <div class="header">
                                             <h4 class="title">Table on Plain Background</h4>
                                             <p class="category">Here is a subtitle for this table</p>
-                                        </div>
+                                        </div> -->
                                         <div class="content table-responsive table-full-width">
                                             <table class="table table-hover">
                                                 <thead>
@@ -207,16 +204,18 @@
                                                     <th>Date</th>
                                                     <th>Time</th>
                                                     <th>Temperature</th>
-                                                    <th>Heartrate</th>
+                                                    <th>Heart Rate</th>
                                                 </thead>
                                                 <tbody>
+                                                    <% for(let i=0; i<times.length; i++){ %> 
                                                     <tr>
-                                                        <td>1</td>
-                                                        <td>Dakota Rice</td>
-                                                        <td>$36,738</td>
-                                                        <td>Niger</td>
-                                                        <td>Oud-Turnhout</td>
+                                                        <td><%= i+1 %> </td>
+                                                        <td><%= times[i].split('T')[0] %> </td>
+                                                        <td><%= times[i].split('T')[1].split('Z')[0] %> </td>
+                                                        <td><%= temp[i] %> </td>
+                                                        <td><%= bpm[i] %> </td>
                                                     </tr>
+                                                    <% } %> 
                                                 </tbody>
                                             </table>
 
@@ -234,28 +233,34 @@
                 src="https://rawgit.com/gionkunz/chartist-js/master/dist/chartist.js"></script>
             <script>
                 let timesArr = [document.getElementById("timeData").value]
-                timesArr = timesArr[0].split(',').map(e => e.split('T')[1]);
+                timesArr = timesArr[0].split(',').map(e => e.split('T')[0]);
+                timesArr = timesArr.map(e => e.split('-')[1] + '/' + e.split('-')[2]);
+
                 let tempArr = [document.getElementById("tempData").value]
                 tempArr = tempArr[0].split(',').map(e => parseFloat(e));
+
                 let bpmArr = [document.getElementById("bpmData").value]
                 bpmArr = bpmArr[0].split(',').map(e => parseFloat(e));
 
+                let eArr = [document.getElementById("eData").value]
+                eArr = eArr[0].split(',').map(e => parseInt(e, 10));
+
                 console.log(timesArr, tempArr, bpmArr);
 
-                // Initialize a Line chart in the container with the ID chart1
+                // Initialize a Line chart for heart rate
                 new Chartist.Line('#heart-sensor', {
-                    labels: timesArr,
+                    labels: eArr,
                     series: [bpmArr]
                 });
 
-
+                // Initialize a Line chart for temperture
                 new Chartist.Line('#temp-sensor', {
                     labels: timesArr,
                     series: [tempArr]
                 });
 
 
-
+                // Initialize a Line chart for mixed analysis
                 new Chartist.Line('#mixed', {
                     labels: timesArr,
                     series: [
@@ -270,5 +275,4 @@
                 });
             </script>
 </body>
-
 </html>

@@ -20,16 +20,18 @@ app.get("/", (req, res, next) => {
     .then((jsonRes) => {
         const temp = [];
         const timestamps = [];
+        const entries = [];
         const bpm = [];
         jsonRes.feeds.forEach(entry => {
             temp.push(parseFloat(entry.field1));
             bpm.push(parseFloat(entry.field2));
             timestamps.push(entry.created_at);
+            entries.push(entry.entry_id);
         });
-        return {Temp: temp, Timestamps: timestamps, Bpm: bpm}
+        return {Temp: temp, Timestamps: timestamps, Bpm: bpm, e: entries}
     }).then((result) => {
         console.log(result);
-        res.render("dashboard", {temp: result.Temp, bpm: result.Bpm, times: result.Timestamps});
+        res.render("dashboard", {temp: result.Temp, bpm: result.Bpm, times: result.Timestamps, e: result.e, date: new Date()});
     })
     .catch((err) => console.log(err));
 });
